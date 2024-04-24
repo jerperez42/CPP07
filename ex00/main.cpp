@@ -6,7 +6,7 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 16:50:13 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/24 16:53:54 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:02:49 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "whatever.h"
 #include "whatever.hpp"
 
-int	main(int ac, char **av)
+int	main(void)
 {
 	int a = 2;
 	int b = 3;
