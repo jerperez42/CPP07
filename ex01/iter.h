@@ -6,11 +6,13 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:07:28 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/24 17:07:41 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:13:47 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ITER_H
 # define ITER_H
+
+# include <stddef.h>
 
 #endif
