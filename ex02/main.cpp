@@ -6,72 +6,69 @@
 /*   By: jerperez <jerperez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 17:08:11 by jerperez          #+#    #+#             */
-/*   Updated: 2024/04/24 18:01:14 by jerperez         ###   ########.fr       */
+/*   Updated: 2024/04/29 15:17:59 by jerperez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "iter.hpp"
-#include <string>
+#include "Array.hpp"
 #include <iostream>
-
-void	_add1(int *i)
-{
-	(*i) += 1;
-}
-
-void	_add1_nok(char *i)
-{
-	(*i) += 1;
-}
-
-template <typename T> void _toupper(T* c)
-{
-	if ('a' <= *c && 'z' >= *c)
-		(*c) += 'A' - 'a';
-}
 
 int	main(void)
 {
 	{
-		int	arr_i[5] = {0, 1 , 2, 3, 4};
+		std::cout << std::endl << "--------default--------" << std::endl;
 
-		
-		for (int i = 0; i < 5; i++)
-			std::cout << "arr_i[" << i << "]=" << arr_i[i] << std::endl;
-		::iter(arr_i, 5, &_add1);
-		std::cout << "-----_add1-----" << std::endl;
-		for (int i = 0; i < 5; i++)
-			std::cout << "arr_i[" << i << "]=" << arr_i[i] << std::endl;
-		std::cout << std::endl;
+		Array<std::string>	ss;
+		Array<int>			ii;
 	}
 	{
-		char	str[6] = {'S', 'a', 'l', 'u', 't', '\0'};
+		std::cout << std::endl << "--------unsigned int--------" << std::endl;
+		unsigned int	n;
 
-		std::cout << str << std::endl;
-		std::cout << "-----_toupper-----" << std::endl;
-		::iter(str, 6, &_toupper<char>);
-		std::cout << str << std::endl;
-		std::cout << std::endl;
+		n = 5;
+		Array<std::string>	ss(n);
+		std::cout << "Array.size()=" << ss.size() << " n=" << n << std::endl;
+		n = 3;
+		Array<int>			ii(n);
+		std::cout << "Array.size()=" << ii.size() << " n=" << n << std::endl;
+		n = 0;
+		Array<float>		ff(n);
+		std::cout << "Array.size()=" << ff.size() << " n=" << n << std::endl;
 	}
-	// incorrect fun
-	// std::cout << "-----ADD 1-----" << std::endl;
-	// std::cout << "-----BEFORE-----" << std::endl;
-	// for (int i = 0; i < 5; i++)
-	// 	std::cout << "arr_i[" << i << "]=" << arr_i[i] << std::endl;
-	// ::iter(arr_i, 5, &_add1_nok);
-	// std::cout << "-----AFTER-----" << std::endl;
-	// for (int i = 0; i < 5; i++)
-	// 	std::cout << "arr_i[" << i << "]=" << arr_i[i] << std::endl;
+	{
+		std::cout << std::endl << "--------operator[] --------" << std::endl;
+		Array<unsigned int>	uiui(2);
+		try
+		{
+			for (unsigned int i = 0; i < 10; i++)
+			{
+				std::cout << i << ": ";
+				uiui[i] = i;
+				std::cout << "(uiui[i]==i) ? " << ((uiui[i] == i) ? "yes" : "no") << std::endl;
+			}
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+	}
+	{
+		std::cout << std::endl << "--------copy operator= --------" << std::endl;
+		Array<std::string>	ss(2);
+		Array<std::string>	copy;
 
-	// incorrect len
-	// std::cout << "-----ADD 1-----" << std::endl;
-	// std::cout << "-----BEFORE-----" << std::endl;
-	// for (int i = 0; i < 5; i++)
-	// 	std::cout << "arr_i[" << i << "]=" << arr_i[i] << std::endl;
-	// ::iter(arr_i, "patate", &_add1);
-	// std::cout << "-----AFTER-----" << std::endl;
-	// for (int i = 0; i < 5; i++)
-	// 	std::cout << "arr_i[" << i << "]=" << arr_i[i] << std::endl;
-	
+		ss[0] = std::string("orginal origin");
+		ss[1] = std::string("orginal something");
+		copy = ss;
+		std::cout << "size original=" << ss.size() << " size copy=" << copy.size() << std::endl;
+		std::cout << std::endl;
+		for (unsigned int i = 0; i < 2; i++)
+			std::cout << "original='" << ss[i] << "' copy=" << copy[i] << std::endl;
+		std::cout << std::endl;
+		ss[0] = std::string("modified origin");
+		ss[1] = std::string("modified something");
+		for (unsigned int i = 0; i < 2; i++)
+			std::cout << "original='" << ss[i] << "' copy=" << copy[i] << std::endl;
+	}
 	return (0);
 }
